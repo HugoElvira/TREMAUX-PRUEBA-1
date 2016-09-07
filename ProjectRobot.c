@@ -1,4 +1,5 @@
 /*
+  Universidad del Valle de Guatemala
   Projecto1.c
   Autores: Pablo Ortiz, Hugo Elvira, Edgar Ramirez, Pedro Garcia
   
@@ -48,9 +49,9 @@ void girarIzquierda(){
   }  
 }
 void girarDerecha(){
-   for(int n = 1; n <= 100; n++){                // Count to hundred
-    drive_rampStep(20,20);                   // move not too fast
-    pause(10);                               // 50 ms between reps
+   for(int n = 1; n <= 70; n++){ //permite al robot girar a la derecha y avanzar evitando que los sensores lo hagan girar nuevamente a la derecha instantaneamente y asi seguir avanzando por el pasillo           
+    drive_rampStep(20,20);                   
+    pause(10);                               
   } 
   if(v_adelante()>5&&consultarDerecha()==0){//pared a la derechaS
       return;
@@ -63,9 +64,9 @@ void girarDerecha(){
     pause(500);
     drive_goto(24,-24); //giro a la derecha
     pause(500);
-    for(int n = 1; n <= 100; n++){                // Count to hundred
-    drive_rampStep(20,20);                   // move not too fast
-    pause(10);                               // 50 ms between reps
+    for(int n = 1; n <= 100; n++){  //permite al robot girar a la derecha y avanzar evitando que los sensores lo hagan girar nuevamente a la derecha instantaneamente y asi seguir avanzando por el pasillo
+    drive_rampStep(20,20);                   
+    pause(10);                               
   } 
     // avanza hasta que se encuentra denuevo con una pared a la derecha
     return;
@@ -74,13 +75,13 @@ void girarDerecha(){
 
 
 
-void girar180(){
+void girar180(){//giro doble a la derecha para salir de caminos cerrarrados
     drive_speed(0,0);
     pause(500);
     drive_goto(24,-24); //giro a la derecha
     pause(500);
     drive_goto(24,-24); //giro a la derecha
-    pause(500);                               // 50 ms between reps
+    pause(500);                               
     // avanza hasta que se encuentra denuevo con una pared a la derecha
     return;
        
@@ -89,22 +90,22 @@ void girar180(){
 
 
 
-int v_adelante(){
+int v_adelante(){//sensor que lee la distancia frontal a la que el robot se encuentra de la pared
   return ping_cm(8);
 }
 
-//Función que verifica el estado del ir derecho
-//Retorna 1 cuando no hay objeto
-//Retorna 0 cuando hay objeto
+//Función que verifica el estado del la derecha
+//Retorna 1 cuandosi no hay pared
+//Retorna 0 cuando cuando hay pared
 int consultarDerecha(){
-  freqout(1,1,27000);
+  freqout(1,1,28000);
   return (input(2));
   }
 
 //Función que verifica el estado del ir izquierda
-//Retorna 1 cuando no hay objeto
-//Retorna 0 cuando hay objeto
+//Retorna 1 cuandosi no hay pared
+//Retorna 0 cuando cuando hay pared
 int consultarIzquierda(){
-  freqout(11,1,27000);
+  freqout(11,1,28000);
   return (input(10));
   }
